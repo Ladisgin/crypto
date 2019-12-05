@@ -35,7 +35,6 @@ public class DecrypterRSA {
         while(!encrypted.equals(BigInteger.ONE) && !encrypted.equals(BigInteger.ZERO)) {
             var t = encrypted.and(BigInteger.ONE.shiftLeft(step + 1).subtract(BigInteger.ONE));
             decrypted = decrypted.shiftLeft(step).or(t.modPow(privateKey, modulus));
-//            System.out.println(decrypted);
             encrypted = encrypted.shiftRight(step + 1);
         }
         return decrypted.toByteArray();

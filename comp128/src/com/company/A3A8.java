@@ -76,7 +76,7 @@ public class A3A8 {
 
     static private int[][] table = {table_0, table_1, table_2, table_3, table_4};
 
-    static byte[] A3A8(byte[] rand, byte[] key) {
+    static byte[] genKey(byte[] rand, byte[] key) {
         int[] x = new int[32];
         int[] bit = new int[128];
         byte[] out = new byte[12];

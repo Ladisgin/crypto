@@ -7,8 +7,12 @@ public class A5 {
     byte[] in;
 
     A5(byte[] in) {
+        this.iter = 0;
+        this.r1 = 0;
+        this.r2 = 0;
+        this.r3 = 0;
         this.in = in;
-        frame = (in[8] << 14) | (in[9] << 6) | (in[10] >> 2);
+        this.frame = 0;
         initialize();
     }
 
@@ -40,10 +44,6 @@ public class A5 {
     }
 
     private void initialize() {
-        iter = 0;
-        r1 = 0;
-        r2 = 0;
-        r3 = 0;
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
                 shiftAll();
@@ -55,9 +55,9 @@ public class A5 {
 
         for (int i = 0; i < 22; ++i) {
             shiftAll();
-            r1 ^= (frame >> i);
-            r2 ^= (frame >> i);
-            r3 ^= (frame >> i);
+            r1 ^= (frame >> i) & 1;
+            r2 ^= (frame >> i) & 1;
+            r3 ^= (frame >> i) & 1;
         }
         for (int i = 0; i < 100; ++i) {
             get_next();
